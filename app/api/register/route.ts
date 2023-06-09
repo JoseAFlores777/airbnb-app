@@ -5,7 +5,6 @@ import prisma from "@/app/libs/prismadb";
 export async function POST(
   request: Request
 ) {
-  console.log('Holaaaaaaa');
   const body = await request.json();
   const {
     email,
