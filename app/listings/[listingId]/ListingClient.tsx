@@ -40,6 +40,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
   const disableDates = useMemo(() => {
     let dates: Date[] = [];
 
+    console.log('Reservations', reservations.length);
+
     reservations.forEach((reservation) => {
       const range = eachDayOfInterval({
         start: new Date(reservation.startDate),
@@ -74,6 +76,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
         toast.success('listing reserved!');
         setDateRange(initialDateRange);
         router.refresh();
+        router.push('/trips');
       })
       .catch(() => {
         toast.error('something went wrong.');
@@ -81,7 +84,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
       .finally(() => {
         setIsLoading(false);
       });
-  }, [totalPrice, dateRange, listing.id, router, currentUser, LoginModal]);
+  }, [totalPrice, dateRange, listing?.id, router, currentUser, LoginModal]);
 
 
   useEffect(() => {
